@@ -1,0 +1,154 @@
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+    color: rgb(255, 255, 255);
+}
+
+body {
+    background: linear-gradient(#170901 0%, #180a01 33.33%, #150701 66.67%, #523208 100%);
+    height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+body::before {
+    background-image: url("img/code.png");
+    background-repeat: no-repeat;
+    background-position: right;
+    content: "";
+    display: block;
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    opacity: 0.4;
+}
+
+.container {
+    width: 80%;
+    min-height: 50vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 24px;
+    border: 1px solid #708090;
+    box-shadow: 4px 4px 20px 0px rgba(1, 8, 14, 0.15);
+    background-image: url("img/Ruido.png");
+    background-size: 100% 100%;
+    position: relative;
+    overflow: hidden;
+}
+
+.container__conteudo {
+    display: flex;
+    align-items: center;
+    justify-content: space-around;
+    position: relative;
+    width: 100%;
+}
+
+.container__informacoes {
+    flex: 2;
+    padding: 3rem;
+}
+
+.container__texto {
+    margin: 12px 0;
+    display: flex;
+    flex-direction: column;
+}
+
+.container__texto-azul {
+    color: hsl(28, 100%, 50%);
+    display: block;
+}
+
+.container__campo {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: 12px;
+}
+
+.container__input {
+    width: 130px;
+    height: 72px;
+    border-radius: 16px;
+    background-color: #FFF;
+    border: none;
+    color: #000;
+    padding: 2rem;
+    font-size: 24px;
+    font-weight: 700;
+    font-family: 'Inter', sans-serif;
+}
+
+.container__botoes {
+    display: flex;
+    flex-direction: row;
+    gap: 1em;
+}
+
+.container__botao {
+    border-radius: 16px;
+    background: hsl(28, 100%, 50%);
+    padding: 16px 24px;
+    font-size: 24px;
+    width: 100%;
+    font-weight: 700;
+    border: none;
+    cursor: pointer;
+}
+
+
+.container__botao-desabilitado {
+    border-radius: 16px;
+    background: hsl(20, 6%, 91%);
+    padding: 16px 24px;
+    font-size: 24px;
+    width: 100%;
+    font-weight: 700;
+    border: none;
+    cursor: not-allowed;
+}
+
+h1 {
+    font-family: 'Chakra Petch', sans-serif;
+    font-size: 72px;
+    font-style: normal;
+    font-weight: 700;
+    line-height: 100%;
+    padding: 2rem;
+}
+
+.texto__paragrafo {
+    color: #FFF;
+    font-family: 'Inter';
+    font-size: 32px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: normal;
+}
+
+.container__imagem-pessoa {
+    flex: 1;
+    max-width: 80%;
+    height: auto;
+    position: relative;
+    right: 30px;
+}
+
+button:disabled {
+    background-color: #708090;
+}
+
+@media screen and (max-width: 1400px) {
+    .container__imagem-pessoa {
+        display: none;
+    }
+
+    h1 {
+        font-size: 100px;
+    }
+}
