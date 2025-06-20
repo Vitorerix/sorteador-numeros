@@ -38,6 +38,7 @@ body::before {
     background-size: 100% 100%;
     position: relative;
     overflow: hidden;
+    padding: 20px;
 }
 
 .container__conteudo {
@@ -46,11 +47,13 @@ body::before {
     justify-content: space-around;
     position: relative;
     width: 100%;
+    flex-wrap: wrap;
 }
 
 .container__informacoes {
     flex: 2;
     padding: 3rem;
+    width: 100%;
 }
 
 .container__texto {
@@ -69,86 +72,175 @@ body::before {
     align-items: center;
     justify-content: space-between;
     margin-bottom: 12px;
+    flex-direction: column;
+    align-items: flex-start;
 }
 
 .container__input {
-    width: 130px;
-    height: 72px;
+    width: 100%;
+    max-width: 200px;
+    height: 60px;
     border-radius: 16px;
     background-color: #FFF;
     border: none;
     color: #000;
-    padding: 2rem;
-    font-size: 24px;
+    padding: 1rem;
+    font-size: 18px;
     font-weight: 700;
     font-family: 'Inter', sans-serif;
+    margin-top: 8px;
 }
 
 .container__botoes {
     display: flex;
     flex-direction: row;
     gap: 1em;
+    flex-wrap: wrap;
+    justify-content: center;
+    width: 100%;
 }
 
-.container__botao {
+.container__botao, .container__botao-desabilitado {
     border-radius: 16px;
-    background: hsl(28, 100%, 50%);
-    padding: 16px 24px;
-    font-size: 24px;
-    width: 100%;
+    padding: 12px 18px;
+    font-size: 18px;
+    width: 48%;
+    max-width: 200px;
     font-weight: 700;
     border: none;
     cursor: pointer;
+    margin: 5px;
 }
 
+.container__botao {
+    background: hsl(28, 100%, 50%);
+}
 
 .container__botao-desabilitado {
-    border-radius: 16px;
     background: hsl(20, 6%, 91%);
-    padding: 16px 24px;
-    font-size: 24px;
-    width: 100%;
-    font-weight: 700;
-    border: none;
     cursor: not-allowed;
 }
 
 h1 {
     font-family: 'Chakra Petch', sans-serif;
-    font-size: 72px;
+    font-size: 48px;
     font-style: normal;
     font-weight: 700;
     line-height: 100%;
-    padding: 2rem;
+    padding: 1rem;
+    text-align: center;
 }
 
 .texto__paragrafo {
     color: #FFF;
     font-family: 'Inter';
-    font-size: 32px;
+    font-size: 20px;
     font-style: normal;
     font-weight: 400;
     line-height: normal;
+    text-align: center;
+    width: 100%;
 }
 
 .container__imagem-pessoa {
-    flex: 1;
-    max-width: 80%;
-    height: auto;
-    position: relative;
-    right: 30px;
+    display: none;
 }
 
 button:disabled {
     background-color: #708090;
 }
 
-@media screen and (max-width: 1400px) {
-    .container__imagem-pessoa {
-        display: none;
+@media screen and (min-width: 768px) {
+    .container {
+        width: 80%;
+        max-width: 1200px;
+        padding: 0;
+    }
+
+    .container__conteudo {
+        flex-wrap: nowrap;
+        justify-content: space-around;
+    }
+
+    .container__informacoes {
+        flex: 2;
+        padding: 3rem;
+        width: auto;
+    }
+
+    .container__campo {
+        flex-direction: row;
+        align-items: center;
+    }
+
+    .container__input {
+        width: 130px;
+        height: 72px;
+        padding: 2rem;
+        font-size: 24px;
+        margin-top: 0;
+    }
+
+    .container__botoes {
+        flex-wrap: nowrap;
+        justify-content: flex-start;
+        width: auto;
+    }
+
+    .container__botao, .container__botao-desabilitado {
+        padding: 16px 24px;
+        font-size: 24px;
+        width: 100%;
+        max-width: none;
+        margin: 10px;
     }
 
     h1 {
-        font-size: 100px;
+        font-size: 72px;
+        padding: 2rem;
+        text-align: left;
+    }
+
+    .texto__paragrafo {
+        font-size: 32px;
+        text-align: left;
+        width: auto;
+    }
+
+    .container__imagem-pessoa {
+        display: block;
+        flex: 1;
+        max-width: 80%;
+        height: auto;
+        position: relative;
+        right: 30px;
+    }
+}
+
+@media screen and (max-width: 480px) {
+    .container {
+        width: 95%;
+        padding: 15px;
+    }
+
+    h1 {
+        font-size: 36px;
+    }
+
+    .texto__paragrafo {
+        font-size: 18px;
+    }
+
+    .container__botao, .container__botao-desabilitado {
+        font-size: 16px;
+        padding: 10px 15px;
+        width: 100%;
+        max-width: none;
+    }
+
+    .container__input {
+        height: 50px;
+        font-size: 16px;
+        padding: 0.8rem;
     }
 }
