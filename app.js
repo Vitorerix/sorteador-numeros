@@ -3,7 +3,19 @@ function sortear(){
     let de = parseInt(document.getElementById('de').value);
     let ate = parseInt(document.getElementById('ate').value);
 
-    correcao();
+    if (isNaN(quantidade) || isNaN(de) || isNaN(ate)) {
+        alert('Por favor, preencha todos os campos com números válidos.');
+        return;
+    }
+
+    if (!correcao(de, ate)) {
+        return;
+    }
+
+    if (quantidade > (ate - de + 1)) {
+        alert(`A quantidade de números a sortear (${quantidade}) é maior do que o intervalo de números disponíveis (${ate - de + 1}). Por favor, ajuste os valores.`);
+        return;
+    }
 
     let sorteados = [];
     let numero;
@@ -16,38 +28,54 @@ function sortear(){
         sorteados.push(numero);
     }
     
-
     let resultado = document.getElementById('resultado');
     resultado.innerHTML = `<label class="texto__paragrafo">Números sorteados: ${sorteados} </label>`;
-    alterarStatusBotao();
+    
+    alterarStatusBotao('sortear');
 }
 
 function obterNumeroAleatorio(min, max) {
-    return Math.floor(Math.random() * (max - min +1)) + min;
+    return Math.floor(Math.random() * (max - min + 1)) + min;
 }
 
-function alterarStatusBotao() {
-    let botao = document.getElementById('btn-reiniciar');
-    if (botao.classList.contains('container__botao-desabilitado')) {
-        botao.classList.remove('container__botao-desabilitado');
-        botao.classList.add('container__botao');
-    } else {
-        botao.classList.contains('container__botao');
-        botao.classList.remove('container__botao-desabilitado');
+function alterarStatusBotao(contexto) {
+    let botaoReiniciar = document.getElementById('btn-reiniciar');
+    let botaoSortear = document.getElementById('btn-sortear');
+
+    if (contexto === 'sortear') {
+        botaoReiniciar.classList.remove('container__botao-desabilitado');
+        botaoReiniciar.classList.add('container__botao');
+        
+        botaoSortear.classList.remove('container__botao');
+        botaoSortear.classList.add('container__botao-desabilitado');
+    } else if (contexto === 'reiniciar') {
+        botaoReiniciar.classList.remove('container__botao');
+        botaoReiniciar.classList.add('container__botao-desabilitado');
+
+        botaoSortear.classList.remove('container__botao-desabilitado');
+        botaoSortear.classList.add('container__botao');
     }
 }
 
 function reiniciar() {
-    quantidade.value = '';
-    de.value = '';
-    ate.value = '';
-    resultado.innerHTML = '<label class="texto__paragrafo">Números sorteados:  nenhum até agora</label>'
+    document.getElementById('quantidade').value = '';
+    document.getElementById('de').value = '';
+    document.getElementById('ate').value = '';
+    
+    let resultado = document.getElementById('resultado');
+    resultado.innerHTML = '<label class="texto__paragrafo">Números sorteados: nenhum até agora</label>';
+
+    alterarStatusBotao('reiniciar');
 }
 
-function correcao() {
+function correcao(de, ate) {
     if (de >= ate) {
-        alert(`Campo "Do número" deve ser inferior ao campo "Até o número". Verifique`);
-        return;
+        alert(`Campo "Do número" (${de}) deve ser inferior ao campo "Até o número". Verifique`);
+        return false;
     }
+    return true;
 }
 
+window.onload = function() {
+    reiniciar();
+};
